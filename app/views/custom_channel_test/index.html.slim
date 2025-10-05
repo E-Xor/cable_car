@@ -1,0 +1,8 @@
+h1 Custom Channel Test
+
+= button_to "Send Test Broadcast", custom_channel_test_broadcast_path, method: :post, form: { data: { turbo_stream: true } }, class: "btn"
+
+.custom-channel-container[custom-channel-id="custom-messages"]
+  p Messages will appear below:
+
+= console

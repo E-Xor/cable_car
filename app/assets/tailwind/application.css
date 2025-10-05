@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.number-field {
+  @apply w-20 rounded-md mx-2 px-2 border border-gray-300;
+}

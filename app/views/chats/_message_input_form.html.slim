@@ -1,0 +1,19 @@
+= form_with model: Chat.new, local: false, id: 'chat-form' do |f|
+  .flex
+    = f.text_field :message,
+      autocomplete: :off,
+      class: "block w-2/3 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400",
+      placeholder: "enter message...",
+      id: 'chat-message'
+    = f.submit "Send",
+      class: "inline-flex w-1/3 items-center justify-center rounded-md bg-slate-400 ml-3 px-3 py-2 text-sm font-semibold shadow-sm",
+      id: "send-button"
+
+
+script
+  | document.getElementById('chat-form').addEventListener('submit', function(event) {
+  |   setTimeout(function() {
+  |     // Clear the input field after the form is submitted
+  |     // document.getElementById('chat-message').value = '';
+  |   }, 0);
+  | });

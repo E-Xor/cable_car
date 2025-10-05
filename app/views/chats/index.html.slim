@@ -1,0 +1,12 @@
+.w-1/2
+  h1.mb-6.text-slate-700.font-bold.text-2xl Chats
+  .space-y-4.mb-8
+    = turbo_stream_from "chat_stream"
+
+    #chats-block
+      = render partial: 'chat_message', collection: @chats
+      / variable name in the partial should match partial naming convention
+      / = render @chats / when using default partial
+
+  #message-form
+    = render "message_input_form"

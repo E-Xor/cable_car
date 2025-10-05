@@ -1,0 +1,28 @@
+Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
+  get 'wheels', to: "wheels#index"
+  post 'wheels/animate', to: 'wheels#animate'
+  patch 'wheels/update_latest_wheel', to: 'wheels#update_latest_wheel'
+
+  # get "chats/index"
+  # get "chats/create"
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # get "up" => "rails/health#show", as: :rails_health_check
+
+  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
+  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+
+  # Defines the root path route ("/")
+  # root "posts#index"
+
+  get 'custom_channel_test', to: "custom_channel_test#index"
+  post 'custom_channel_test/broadcast', to: "custom_channel_test#broadcast_test"
+
+  resources :chats
+  root "directory#index"
+end

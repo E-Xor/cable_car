@@ -1,0 +1,18 @@
+h1 Wheels#index
+= turbo_stream_from "wheel_stream"
+/! it should be wrapped in div
+div
+  / = render @latest_wheel / when using default partial in `broadcast_to`
+  = render partial: 'wheel_stream_partial', locals: {wheel: @latest_wheel}
+br
+
+= form_with url: wheels_update_latest_wheel_path, method: :patch, local: true do |f|
+  = f.label :angle_position, "Angle Position", class: "p-2"
+  = f.number_field :angle_position, step: 0.01, class: "number-field", value: @latest_wheel.angle_position
+  = f.submit "Update Angle Position"
+br
+
+= form_with url: wheels_animate_path, method: :post, data: { turbo: true } do |f|
+  #animate-form
+    = f.submit "Animate"
+#wheel-animation Not spinning
