@@ -1,14 +1,18 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
+    identified_by :current_user
+
     def connect
-      Rails.logger.info "=" * 50
-      Rails.logger.info "ApplicationCable::Connection#connect called"
-      Rails.logger.info "Request headers: #{request.headers.to_h.select { |k, v| k.start_with?('HTTP_') }}"
-      Rails.logger.info "=" * 50
+      set_current_user || reject_unauthorized_connection
     end
 
-    def disconnect
-      Rails.logger.info "ApplicationCable::Connection#disconnect called"
+    private
+
+    def set_current_user
+      if session = Session.find_by(id: cookies.signed[:session_id])
+        Rails.logger.info "MAKSIM: ApplicationCable::Connection#set_current_user session.user: #{session.user.inspect}"
+        self.current_user = session.user
+      end
     end
   end
 end

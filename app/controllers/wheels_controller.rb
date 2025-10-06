@@ -1,5 +1,6 @@
 class WheelsController < ApplicationController
   def index
+    Rails.logger.debug "MAKSIM WheelsController Current.user: #{Current.user.inspect}"
     @latest_wheel = Wheel.order(:updated_at).last
   end
 

@@ -23,8 +23,14 @@ html
     = javascript_importmap_tags
 
   body
-    main.container.mx-auto.mt-28.px-5.flex-col
-      = link_to 'Back to Directory', root_path
-      br
-      br
+    - if authenticated?
+      nav.bg-white.shadow.mb-8.p-5
+          .flex.justify-between.h-16
+            .flex.items-center
+              = link_to 'Back to Directory', root_path, class: "text-xl font-semibold"
+            .flex.items-center.space-x-4
+              span.text-gray-700.pr-5 = Current.user.email_address
+              = button_to 'Sign out', session_path, method: :delete, class: "text-sm text-red-600 hover:text-red-800 font-medium"
+
+    main.container.mx-auto.mt-8.p-10.flex-col
       = yield

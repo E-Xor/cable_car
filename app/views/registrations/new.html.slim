@@ -1,0 +1,39 @@
+.min-h-screen.flex.items-center.justify-center.bg-gray-50.py-12.px-4.sm:px-6.lg:px-8
+  .max-w-md.w-full.space-y-8
+    div
+      h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900
+        | Create your account
+      p.mt-2.text-center.text-sm.text-gray-600.pb-[50px]
+        | Or
+        br
+        = link_to "sign in to your existing account", new_session_path, class: "font-medium text-indigo-600 hover:text-indigo-500"
+
+    - if @user.errors.any?
+      .bg-red-50.border.border-red-400.text-red-700.px-4.py-3.rounded.relative role="alert"
+        h4.font-bold = "#{pluralize(@user.errors.count, 'error')} prohibited this user from being saved:"
+        ul.mt-2.list-disc.list-inside.text-sm
+          - @user.errors.full_messages.each do |message|
+            li = message
+
+    = form_with model: @user, url: registrations_path, class: "mt-8 space-y-6" do |form|
+      .space-y-4
+        div
+          label.block.text-sm.font-medium.text-gray-700 for="email-address"
+            | Email address
+          .mt-1
+            = form.email_field :email_address, required: true, autofocus: true, autocomplete: "email", placeholder: "you@example.com", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+
+        div
+          label.block.text-sm.font-medium.text-gray-700 for="password"
+            | Password
+          .mt-1
+            = form.password_field :password, required: true, autocomplete: "new-password", placeholder: "At least 6 characters", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+
+        div
+          label.block.text-sm.font-medium.text-gray-700 for="password-confirmation"
+            | Confirm password
+          .mt-1
+            = form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+
+      div
+        = form.submit "Sign up"

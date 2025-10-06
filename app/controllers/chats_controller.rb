@@ -1,5 +1,6 @@
 class ChatsController < ApplicationController
   def index
+    Rails.logger.debug "MAKSIM ChatsController Current.user: #{Current.user.inspect}"
     @chats = Chat.all
   end
 

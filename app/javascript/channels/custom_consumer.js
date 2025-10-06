@@ -34,9 +34,10 @@ consumer.subscriptions.create(
 
     createLine(data) {
       console.log('MAKSIM custom_consumer.js - createLine called')
+      console.log('MAKSIM custom_consumer.js - data:', data)
       return `
         <p>
-          ${data["custom_param"]}
+          ${data["custom_param"]} | ${data["from_user"]}
         </p>
       `
     }
