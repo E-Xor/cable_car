@@ -26,3 +26,11 @@ user.sessions.destroy_all
 
 admin@example.com
 `adminadmin`
+
+## Timer via ActionCable
+
+In the top-right corner of the /chats page
+
+```
+rails timer:broadcast
+```
