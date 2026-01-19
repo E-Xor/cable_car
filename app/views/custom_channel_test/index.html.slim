@@ -5,4 +5,5 @@ h1 Custom Channel Test
 .custom-channel-container[custom-channel-id="custom-messages"]
   p Messages will appear below:
 
-= console
+- if Rails.env.development?
+  = console
