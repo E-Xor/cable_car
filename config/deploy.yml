@@ -2,12 +2,12 @@
 service: cable_car
 
 # Name of the container image in ECR
-image: cable_car
+image: rails_8/cable_car
 
 # Deploy to these servers (replace with your EC2 public IP).
 servers:
   web:
-    - YOUR_EC2_PUBLIC_IP
+    - 44.192.49.202
 
 # SSL via Let's Encrypt (free, auto-renewed by kamal-proxy).
 proxy:
@@ -16,7 +16,7 @@ proxy:
 
 # AWS ECR registry credentials.
 registry:
-  server: AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
+  server: 029212082144.dkr.ecr.us-east-1.amazonaws.com
   username: AWS
   password:
     - KAMAL_REGISTRY_PASSWORD
@@ -30,7 +30,7 @@ env:
   clear:
     SOLID_QUEUE_IN_PUMA: true
     AWS_REGION: us-east-1
-    AWS_BUCKET: rails-8
+    AWS_BUCKET: cable-car-assets
     # CDN_HOST: YOUR_CLOUDFRONT_DOMAIN.cloudfront.net
 
 # Aliases for common commands.
@@ -51,9 +51,10 @@ asset_path: /rails/public/assets
 builder:
   arch: amd64
 
-# Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: ubuntu
+  keys:
+    - ~/Documents/Personal Projects/rails_8/cable_car_key.pem
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
