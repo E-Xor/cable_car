@@ -1,7 +1,7 @@
 class WheelsController < ApplicationController
   def index
     Rails.logger.debug "MAKSIM WheelsController Current.user: #{Current.user.inspect}"
-    @latest_wheel = Wheel.order(:updated_at).last
+    @latest_wheel = Wheel.order(:updated_at).last || Wheel.create!(angle_position: 0.0)
   end
 
   def animate
