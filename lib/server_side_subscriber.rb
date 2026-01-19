@@ -38,15 +38,11 @@ class ServerSideSubscriber
     Rails.logger.info "ServerSideSubscriber: Received broadcast on '#{@channel}'"
     Rails.logger.info "ServerSideSubscriber: Data: #{data.inspect}"
 
-    # Parse the data if it's JSON
     begin
       parsed_data = JSON.parse(data) if data.is_a?(String)
       parsed_data ||= data
-
       Rails.logger.info "ServerSideSubscriber: Parsed data: #{parsed_data.inspect}"
 
-      # You can process the data here
-      # For example, save to database, trigger jobs, etc.
       process_server_side_message(parsed_data)
     rescue JSON::ParserError => e
       Rails.logger.error "ServerSideSubscriber: Failed to parse JSON: #{e.message}"
@@ -57,12 +53,10 @@ class ServerSideSubscriber
 
   def process_server_side_message(data)
     # Add your server-side processing logic here
-    Rails.logger.info "ServerSideSubscriber: Processing message server-side..."
-
     # Example: You could trigger background jobs, update caches, etc.
     # ActiveJob.perform_later(ProcessBroadcastJob, data)
+    Rails.logger.info "ServerSideSubscriber: Processing message server-side..."
 
-    # For demo purposes, let's just log the processing
     if data['custom_param']
       Rails.logger.info "ServerSideSubscriber: Custom param received: #{data['custom_param']}"
     end

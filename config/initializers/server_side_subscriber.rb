@@ -1,7 +1,4 @@
-# Initialize server-side ActionCable subscriber
 Rails.application.config.after_initialize do
-  # Only start in development and production environments
-  # Skip in test environment to avoid interference with tests
   if Rails.env.development? || Rails.env.production?
     begin
       # Require the basic subscriber class
@@ -28,7 +25,6 @@ Rails.application.config.after_initialize do
   end
 end
 
-# Ensure we stop the subscriber when the application shuts down
 at_exit do
   if Rails.application.config.respond_to?(:server_side_subscriber) &&
      Rails.application.config.server_side_subscriber
