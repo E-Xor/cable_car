@@ -70,3 +70,5 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "slim", "~> 5.2"
 
 gem "foreman", "~> 0.90.0"
+
+gem "rack-cors", "~> 3.0.0"

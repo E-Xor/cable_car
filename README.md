@@ -75,7 +75,7 @@ Point your domain to the EC2 instance:
 
 Wait for DNS propagation before deploying (check with `dig cablecar.click`).
 
-#### 4. Install Docker on EC2
+#### Install Docker on EC2
 
 SSH into your instance
 ```bash
@@ -105,6 +105,16 @@ Origin path: /assets
 Copy the CloudFront domain, dy3w5ttukbq3c.cloudfront.net, specify `CDN_HOST: dy3w5ttukbq3c.cloudfront.net` in deploy.yml.
 
 AWS also created an SSL Cert for the distribution in ACM, arn:aws:acm:us-east-1:029212082144:certificate/124d0681-60b5-4028-908a-e8be1328cc73
+
+- Go to your CloudFront distribution → Behaviors → Edit the default behavior
+- Under Origin request policy, select CORS-S3Origin (or AllViewer to forward all headers)
+- Under Response headers policy, select CORS-Assets
+- Response headers should be SimpleCORS
+- Save
+- Go to CloudFront → Your distribution → Invalidations tab
+- Click Create invalidation
+- Enter /* to invalidate all cached objects
+- Click Create invalidation
 
 ### Variables
 
