@@ -31,7 +31,7 @@ env:
     SOLID_QUEUE_IN_PUMA: true
     AWS_REGION: us-east-1
     AWS_BUCKET: cable-car-assets
-    # CDN_HOST: dy3w5ttukbq3c.cloudfront.net
+    CDN_HOST: dy3w5ttukbq3c.cloudfront.net
 
 # Aliases for common commands.
 aliases:
