@@ -1,4 +1,7 @@
 Rails.application.config.after_initialize do
+  # Skip during asset precompilation (Docker build) or when database isn't available
+  next if ENV["SECRET_KEY_BASE_DUMMY"].present?
+
   if Rails.env.development? || Rails.env.production?
     begin
       # Require the basic subscriber class
