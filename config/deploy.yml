@@ -31,7 +31,7 @@ env:
     SOLID_QUEUE_IN_PUMA: true
     AWS_REGION: us-east-1
     AWS_BUCKET: cable-car-assets
-    CDN_HOST: d2tj6efpiyj5d5.cloudfront.net
+    # CDN_HOST: d2tj6efpiyj5d5.cloudfront.net  # Disabled - CloudFront doesn't work with kamal-proxy
 
 # Aliases for common commands.
 aliases:

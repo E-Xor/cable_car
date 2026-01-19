@@ -99,19 +99,18 @@ newgrp docker
 Create `cable-car-assets` bucket (cable-car-assets.s3.us-east-1.amazonaws.com), update it in storage.yml and update `AWS_BUCKET` in deploy.yml.
 Bucket policy should allow your IAM user to read/write.
 
-Create a CloudFront distribution
-Origin: cablecar.click (or the EC2 IP)
-Origin path: /assets
-Origin protocol: HTTPS only
+Most likely need Business plan and custom headers, couldn't make it work with any of the default headers.
+- Create a CloudFront distribution
+  - Origin: cablecar.click (or the EC2 IP)
+  - Origin path: empty, not '/assets'
+  - Origin protocol: HTTP only
+- Go to your CloudFront distribution → Behaviors → Edit the default behavior
+  - Origin request policy: AllViewerExceptHostHeader
+  - Response headers policy: SimpleCORS
+
 AWS also created an SSL Cert for the distribution in ACM, arn:aws:acm:us-east-1:029212082144:certificate/124d0681-60b5-4028-908a-e8be1328cc73
 Copy the CloudFront domain, d2tj6efpiyj5d5.cloudfront.net, specify `CDN_HOST: d2tj6efpiyj5d5.cloudfront.net` in deploy.yml.
 
-- Go to your CloudFront distribution → Behaviors → Edit the default behavior
-- Under Origin request policy, select CORS-S3Origin (or AllViewer to forward all headers)
-- Under Response headers policy, select CORS-Assets
-- Response headers should be SimpleCORS
-- Save
-- Go to CloudFront → Your distribution → Invalidations tab
 - Click Create invalidation
 - Enter /* to invalidate all cached objects
 - Click Create invalidation
