@@ -102,7 +102,7 @@ Bucket policy should allow your IAM user to read/write.
 Create a CloudFront distribution
 Origin: Your EC2 domain or YOUR_DOMAIN.com
 Origin path: /assets
-Copy the CloudFront domain, dy3w5ttukbq3c.cloudfront.net
+Copy the CloudFront domain, dy3w5ttukbq3c.cloudfront.net, specify `CDN_HOST: dy3w5ttukbq3c.cloudfront.net` in deploy.yml.
 
 AWS also created an SSL Cert for the distribution in ACM, arn:aws:acm:us-east-1:029212082144:certificate/124d0681-60b5-4028-908a-e8be1328cc73
 
@@ -142,7 +142,7 @@ open -a Docker
 
 ```bash
 # First-time setup
-bin/kamal setup
+bin/kamal setup  --skip-local-build=false
 
 # Subsequent deploys
 bin/kamal deploy
